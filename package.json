@@ -4,7 +4,7 @@
   "description": "Skupply backend",
   "main": "./src/index.js",
   "scripts": {
-    "start": "node -r dotenv/config src/index.js",
+    "start": "node src/index.js",
     "test": "jest --coverage",
     "swagger": "swagger-cli bundle src/swagger/index.yaml --outfile src/swagger/swagger.json --type json"
   },

@@ -38,14 +38,7 @@ app.use('/seller', seller);
 app.use('/item', item);
 
 // Media endpoint
-const path = require('path');
-app.get('/', (req, res) => {
-  const filePath = path.join(__dirname, '../dist/index.html');
-  res.sendFile(filePath);
-});
-
 app.use(express.static('media'));
-app.use(express.static('dist'));
 
 const PORT = process.env.PORT || 3000;
 
