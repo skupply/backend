@@ -8,6 +8,10 @@
     "test": "jest --coverage",
     "swagger": "swagger-cli bundle src/swagger/index.yaml --outfile src/swagger/swagger.json --type json"
   },
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
   "author": "Simone Rossi, Dorijan Di Zepp, Piccin Andrea",
   "license": "ISC",
   "devDependencies": {
