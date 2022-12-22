@@ -1,0 +1,10 @@
+summary: Checkout
+description: In fase di sviluppo
+tags:
+  - Cart
+
+responses:
+  '200':
+    description: "Success: l'API viene chiamata correttamente"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml

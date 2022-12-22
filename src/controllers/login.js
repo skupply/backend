@@ -2,7 +2,6 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const Buyer = require('../models/Buyer');
 
-//TODO: inserire codici di ritorno
 const loginUser = async(req, res) => {
     const data = req.body;
     const hash = crypto.createHash('sha256');
@@ -13,7 +12,7 @@ const loginUser = async(req, res) => {
 
     if (result && result.passwordHash == password)
         res.status(200).json({
-            code: "",
+            code: "300",
             message: "loged in",
             ok: true,
             user: {
@@ -25,7 +24,7 @@ const loginUser = async(req, res) => {
             }
         });
     else
-        res.status(401).json({ code: "", message: "wrong credentials", ok: false });
+        res.status(401).json({ code: "303", message: "wrong credentials", ok: false });
 }
 
 module.exports = { loginUser };

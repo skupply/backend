@@ -1,0 +1,32 @@
+summary: Inserimento nuovo articolo
+description: Inserimento di un nuovo articolo all'interno del carrello dell'utente
+tags:
+  - Cart
+
+requestBody:
+  description: Dati dell'utente e dell'articolo
+  required: true
+  content:
+    application/json:
+      schema:
+        tpye: object
+        properties:
+          email:
+            type: string
+            format: email
+          id_item:
+            type: string  
+
+responses:
+  '200':
+    description: "Success: articolo inserito nel carrello"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml
+  '400':
+    description: "Bad request: il campo email e/o id_item non è stato definito"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml
+  '404':
+    description: "Not found: l'email e/o l'id_item non fanno riferimento a nessuna entità"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml

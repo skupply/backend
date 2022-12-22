@@ -1,0 +1,27 @@
+summary: Cerca username
+description: Cerca se l'username fornito è già associato ad un account
+tags:
+  - Buyer
+
+parameters:
+  - in: query
+    name: username
+    schema:
+      type: string
+    required: true
+
+responses:
+  '200':
+    description: "Found: l'username è già utilizzato da un account"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml
+  
+  '400':
+    description: "Bad Request: richiesta non formattata correttamente"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml
+  
+  '404':
+    description: "Not found: l'username è disponibile"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml

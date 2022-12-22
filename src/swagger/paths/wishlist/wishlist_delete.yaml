@@ -1,0 +1,32 @@
+summary: Rimozione articolo
+description: Rimozione di un articolo dalla wishlist
+tags:
+  - Wishlist
+
+requestBody:
+  description: Dati dell'utente e dell'articolo
+  required: true
+  content:
+    application/json:
+      schema:
+        tpye: object
+        properties:
+          email:
+            type: string
+            format: email
+          id:
+            type: string  
+
+responses:
+  '200':
+    description: "Success: articolo rimosso dalla wishlist"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml
+  '400':
+    description: "Bad request: il campo email e/o id non è stato definito"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml
+  '404':
+    description: "Not found: l'email e/o l'id non fanno riferimento a nessuna entità"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml

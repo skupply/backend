@@ -1,0 +1,30 @@
+summary: Articoli carrello
+description: Lista di tutti gli articoli del carrello dell'utente
+tags:
+  - Cart
+
+requestBody:
+  description: Dati dell'utente
+  required: true
+  content:
+    application/json:
+      schema:
+        tpye: object
+        properties:
+          email:
+            type: string
+            format: email
+
+responses:
+  '200':
+    description: "Success: lista articoli del carrello"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml
+  '400':
+    description: "Bad request: il campo email non è stato definito"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml
+  '404':
+    description: "Not found: l'email non corrisponde a nessun utente"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml

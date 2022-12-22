@@ -8,6 +8,10 @@
     $ref: ./buyer/buyer_edit.yaml
   delete:
     $ref: ./buyer/buyer_remove.yaml
+  
+/buyer/find/:
+  get:
+    $ref: ./buyer/buyer_find.yaml
 
 # Seller's API
 /seller:
@@ -38,6 +42,38 @@
   post:
     $ref: ./email/email_verify.yaml
 
+# Cart's API
+/cart:
+  post:
+    $ref: ./cart/cart_post.yaml
+  put:
+    $ref: ./cart/cart_put.yaml
+  delete:
+    $ref: ./cart/cart_delete.yaml
+
+/cart/add:
+  put:
+    $ref: ./cart/cart_put_add.yaml
+
+/cart/all:
+  delete:
+    $ref: ./cart/cart_delete_all.yaml
+
+/cart/checkout:
+  post:
+    $ref: ./cart/cart_post_checkout.yaml
+
+# Wishlist's API
+/wishlist:
+  post:
+    $ref: ./wishlist/wishlist_post.yaml
+  delete:
+    $ref: ./wishlist/wishlist_delete.yaml
+
+/wishlist/add:
+  put:
+    $ref: ./wishlist/wishlist_put.yaml
+
 # Proposal's API
 /proposals:
   post:
@@ -62,7 +98,6 @@
 /proposals/reject/{id}:
   put:
     $ref: ./proposal/proposal_reject.yaml
-
 
 # Auth
 /login:

@@ -10,7 +10,7 @@ const getItems = async(req, res) => {
     const email = req.body.email;
 
     if (email == null)
-        return res.status(404).json({ code: "402", message: "missing arguments" });
+        return res.status(400).json({ code: "402", message: "missing arguments" });
 
     const result = await Buyer.findOne({ email: email });
     if (!result) return res.status(404).json({ code: "403", message: "user not found" });
@@ -149,17 +149,33 @@ const deleteOneItem = async(req, res) => {
  * questa funzione verrà usata nel momento del checkout dal carrello
  */
 const deleteAll = async(req, res) => {
-    let email = req.body.email;
+    const email = req.body.email;
 
     if (!email) {
-        return res.status(404).json({ code: "402", message: "missing arguments" });
+        return res.status(400).json({ code: "402", message: "missing arguments" });
         //campi non presenti, sessione probabilmente non valida
     }
 
-    //nota: oltre che agli elementi, viene rimosso anche il parametro cart
-    //ma questo non comporta errori dato che lo schema definisce che l'utente
-    //abbia come attributo anche il carrello
-    const result = await Buyer.updateOne({ email: email }, { $unset: { cart: [] } });
+    //ricerca utente
+    let result = await Buyer.findOne({ email: email });
+    if (!result) return res.status(404).json({ code: "403", message: "user not found" });
+    
+    const cart = result.cart;
+    let ids = [];
+
+    //lettura id articoli
+    for(let i=0; i<cart.length; i++){
+        ids.push(cart[i]._id);
+        console.log(ids);
+    }
+
+    //pull valori array per rimozione articoli dal carrello
+    result = await Buyer.updateOne({ "email": email },  { $pull: {
+        cart: {
+            _id: { $in: ids }
+        }
+    }});
+
     if (!result) return res.status(404).json({ code: "401", message: "database error" });
     return res.status(200).json({ code: "400", message: "cart cleared" });
 
@@ -173,7 +189,7 @@ const checkout = async(req, res) => {
     //NB facendo il checkout è da verificare prima 
     //se la quantità è disponibile e, in caso positivo, modificarla sottraendo
     //la quantità definita nel carrello
-    res.json({message: "checkout"})
+    res.status(200).json({message: "checkout"})
     return res;
 };
 

@@ -1,0 +1,34 @@
+summary: Modifica quantità articolo
+description: Modifica della quantità di un articolo del carrello
+tags:
+  - Cart
+
+requestBody:
+  description: Dati dell'utente e dell'articolo e nuova quantità
+  required: true
+  content:
+    application/json:
+      schema:
+        tpye: object
+        properties:
+          email:
+            type: string
+            format: email
+          id:
+            type: string
+          quantity:
+            type: integer    
+
+responses:
+  '200':
+    description: "Success: quantità modificata"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml
+  '400':
+    description: "Bad request: il campo email, id e/o quantity non è stato definito"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml
+  '404':
+    description: "Not found: l'email e/o l'id_item non fanno riferimento a nessuna entità"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml

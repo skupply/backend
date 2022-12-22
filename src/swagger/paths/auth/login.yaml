@@ -45,9 +45,7 @@ responses:
             token:
               type: string
         
-
   '401':
     description: "Unauthorized: credenziali mancanti"
     schema:
       $ref: ../../components/schemas/common/response.yaml
-

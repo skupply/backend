@@ -1,0 +1,30 @@
+summary: Rimozione articoli
+description: Tutti gli articoli del carrello vengono rimossi
+tags:
+  - Cart
+
+requestBody:
+  description: Dati dell'utente
+  required: true
+  content:
+    application/json:
+      schema:
+        tpye: object
+        properties:
+          email:
+            type: string
+            format: email
+
+responses:
+  '200':
+    description: "Success: articoli rimossi"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml
+  '400':
+    description: "Bad request: il campo email non è stato definito"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml
+  '404':
+    description: "Not found: l'email non fa riferimento a nessun utente"
+    schema:
+      $ref: ../../components/schemas/common/response.yaml

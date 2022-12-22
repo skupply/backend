@@ -15,4 +15,7 @@ router.put('/', verifyAuthentication, buyerController.edit);
 // D - delete
 router.delete('/', verifyAuthentication, buyerController.remove);
 
+// F - find
+router.get('/find', buyerController.find);
+
 module.exports = router;
