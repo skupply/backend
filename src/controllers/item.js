@@ -164,6 +164,20 @@ const search = async(req, res) => {
     return res.status(200).json({ articles: result, code: "700", message: "success" });
 }
 
+const getInfoSeller = async(req, res) => {
+    // required params
+    if(!req.params.id)
+        return res.status(400).json({ code: "", message: "missing arguments" });
+
+    // invalid params
+    if (!(await Seller.exists({ userId: req.params.id })))
+        return res.status(400).json({ code: "", message: "invalid arguments" });
+
+    let buyer = await Buyer.findOne({ _id: req.params.id });
+
+    return res.status(200).json({ user: buyer, code: "", message: "success" });    
+}
+
 const edit = async(req, res) => {
 
     // required params
@@ -327,6 +341,7 @@ module.exports = {
     getInfo,
     getByUser,
     search,
+    getInfoSeller,
     edit,
     publish,
     retire,

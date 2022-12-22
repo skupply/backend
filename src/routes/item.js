@@ -10,6 +10,7 @@ router.post('/', verifyAuthentication, itemController.create);
 router.get('/id=:id', itemController.getInfo);
 router.get('/username=:username', itemController.getByUser);
 router.get('/', itemController.search);
+router.get('/seller/id=:id', itemController.getInfoSeller);
 
 // U - update
 router.put('/', verifyAuthentication, itemController.edit);
